@@ -17,7 +17,8 @@
     "pretest": "npm run build",
     "build": "rollup -c -f cjs -o dist/rollup-plugin-yaml.cjs.js && rollup -c -f es -o dist/rollup-plugin-yaml.es.js",
     "prebuild": "rm -rf dist/*",
-    "prepublish": "npm test"
+    "prepublish": "npm test",
+    "lint": "eslint src"
   },
   "files": [
     "src",
