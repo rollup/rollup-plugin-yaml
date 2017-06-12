@@ -1,4 +1,4 @@
-import * as YAML from 'yamljs';
+import YAML from 'js-yaml';
 import toSource from 'tosource';
 import { createFilter, makeLegalIdentifier } from 'rollup-pluginutils';
 
@@ -14,7 +14,7 @@ export default function yaml ( options = {} ) {
 			if ( !ext.test( id ) ) return null;
 			if ( !filter( id ) ) return null;
 
-			const data = YAML.parse( yaml );
+			const data = YAML.load( yaml );
 			const keys = Object.keys( data ).filter( key => key === makeLegalIdentifier( key ) );
 
 			let code = `var data = ${toSource( data )};\n\n`;
