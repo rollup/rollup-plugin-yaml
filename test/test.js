@@ -8,8 +8,10 @@ require('source-map-support').install();
 
 process.chdir(__dirname);
 
-function executeBundle(bundle) {
-	var generated = bundle.generate();
+async function executeBundle(bundle) {
+	var generated = await bundle.generate({
+		format: 'esm'
+	});
 	var code = generated.code;
 
 	var fn = new Function('assert', code);
@@ -37,7 +39,7 @@ describe('rollup-plugin-yaml', function() {
 	it('converts yaml', function() {
 		return rollup
 			.rollup({
-				entry: 'samples/basic/main.js',
+				input: 'samples/basic/main.js',
 				plugins: [yaml()]
 			})
 			.then(executeBundle);
@@ -46,7 +48,7 @@ describe('rollup-plugin-yaml', function() {
 	it('converts yml', function() {
 		return rollup
 			.rollup({
-				entry: 'samples/yml/main.js',
+				input: 'samples/yml/main.js',
 				plugins: [yaml()]
 			})
 			.then(executeBundle);
@@ -55,7 +57,7 @@ describe('rollup-plugin-yaml', function() {
 	it('generates named exports', function() {
 		return rollup
 			.rollup({
-				entry: 'samples/named/main.js',
+				input: 'samples/named/main.js',
 				plugins: [yaml()]
 			})
 			.then(executeBundle);
@@ -64,7 +66,7 @@ describe('rollup-plugin-yaml', function() {
 	it('resolves extensionless imports in conjunction with npm plugin', function() {
 		return rollup
 			.rollup({
-				entry: 'samples/extensionless/main.js',
+				input: 'samples/extensionless/main.js',
 				plugins: [npm({ extensions: ['.js', '.yaml'] }), yaml()]
 			})
 			.then(executeBundle);
