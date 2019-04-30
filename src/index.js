@@ -15,8 +15,8 @@ export default function yaml(options = {}) {
 			if (!filter(id)) return null;
 
 			const data = YAML.load(yaml);
-			const keys = Object.keys(data).filter(
-				key => key === makeLegalIdentifier(key)
+			const keys = Object.keys(data).map(
+				key => makeLegalIdentifier(key)
 			);
 
 			let code = `var data = ${toSource(data)};\n\n`;
