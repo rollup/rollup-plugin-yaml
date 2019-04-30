@@ -15,14 +15,13 @@ export default function yaml(options = {}) {
 			if (!filter(id)) return null;
 
 			const data = YAML.load(yaml);
-			const keys = Object.keys(data).map(
-				key => makeLegalIdentifier(key)
-			);
+			const originalKeys = Object.keys(data);
+			const keys = originalKeys.map(key => makeLegalIdentifier(key));
 
 			let code = `var data = ${toSource(data)};\n\n`;
 
 			const exports = ['export default data;']
-				.concat(keys.map(key => `export var ${key} = data.${key};`))
+				.concat(keys.map((key, index) => `export var ${key} = data["${originalKeys[index]}"];`))
 				.join('\n');
 
 			return {
