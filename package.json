@@ -1,6 +1,6 @@
 {
   "name": "andriepu/rollup-plugin-yaml",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "dist/rollup-plugin-yaml.cjs.js",
   "jsnext:main": "dist/rollup-plugin-yaml.es.js",
   "devDependencies": {
