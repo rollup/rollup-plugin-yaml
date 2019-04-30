@@ -1,5 +1,5 @@
 {
-  "name": "andriepu/rollup-plugin-yaml",
+  "name": "@andriepu/rollup-plugin-yaml",
   "version": "2.0.0",
   "main": "dist/rollup-plugin-yaml.cjs.js",
   "jsnext:main": "dist/rollup-plugin-yaml.es.js",
