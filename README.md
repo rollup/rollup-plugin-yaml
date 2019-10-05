@@ -32,6 +32,12 @@ rollup({
       // but you can also specifically include/exclude files
       include: 'node_modules/**',  // Default: undefined
       exclude: [ 'node_modules/foo/**', 'node_modules/bar/**' ],  // Default: undefined
+      // optionally transform yaml content
+      transform(data) {
+        if (Array.isArray(data))
+          return data.filter((element) => element.private !== true);
+        return data;
+      }
     })
   ]
 });
