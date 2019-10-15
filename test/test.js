@@ -69,4 +69,19 @@ describe('rollup-plugin-yaml', function() {
 			})
 			.then(executeBundle);
 	});
+
+	it('applies the optional transform method to parsed YAML', function() {
+		const transform = (data) => {
+			if (Array.isArray(data))
+				return data.filter((datum) => !datum.private );
+			else
+				Object.keys(data).forEach((key) => { if (data[key].private) delete data[key]; });
+		};
+		return rollup
+			.rollup({
+				entry: 'samples/transform/main.js',
+				plugins: [yaml({ transform })]
+			})
+			.then(executeBundle);
+	});
 });
