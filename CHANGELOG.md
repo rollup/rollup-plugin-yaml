@@ -1,9 +1,10 @@
 # rollup-plugin-yaml changelog
 
-## 1.2.0
-*unreleased*
+## 2.0.0
+*2019-10-18*
 
 * Add `transform` option [#6](https://github.com/rollup/rollup/pull/6) (by @CharlesHolbrow)
+* Update dependencies and build, require Node 6 [#7](https://github.com/rollup/rollup/pull/7) (by @lukastaegert)
 
 ## 1.1.0
 
