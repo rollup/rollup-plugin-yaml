@@ -1,10 +1,20 @@
-import buble from 'rollup-plugin-buble';
-
-var external = Object.keys( require( './package.json' ).dependencies );
+import babel from 'rollup-plugin-babel';
 
 export default {
-	entry: 'src/index.js',
-	plugins: [ buble({ sourceMap: true }) ],
-	external: external,
-	sourceMap: true
+	input: 'src/index.js',
+	plugins: [
+		babel({
+			presets: [['@babel/preset-env', {
+				targets: {
+					node: 6
+				}
+			}]
+			]
+		})
+	],
+	external: Object.keys(require('./package.json').dependencies),
+	output: [
+		{ file: 'dist/rollup-plugin-yaml.cjs.js', format: 'cjs', sourcemap: true },
+		{ file: 'dist/rollup-plugin-yaml.es.js', format: 'es', sourcemap: true }
+	]
 };

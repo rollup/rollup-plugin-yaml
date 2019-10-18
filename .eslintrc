@@ -1,13 +1,16 @@
 {
     "rules": {
         "indent": [ 2, "tab", { "SwitchCase": 1 } ],
-        "quotes": [ 2, "single" ],
-        "linebreak-style": [ 2, "unix" ],
+        "quotes": [ 2, "single", { "allowTemplateLiterals": true } ],
         "semi": [ 2, "always" ],
         "keyword-spacing": [ 2, { "before": true, "after": true } ],
         "space-before-blocks": [ 2, "always" ],
+        "space-before-function-paren": [ 2, "always" ],
         "no-mixed-spaces-and-tabs": [ 2, "smart-tabs" ],
-        "no-cond-assign": [ 0 ]
+        "no-cond-assign": 0,
+        "no-unused-vars": 2,
+        "prefer-const": 2,
+        "no-var": 2
     },
     "env": {
         "es6": true,
