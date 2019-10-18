@@ -32,6 +32,14 @@ rollup({
       // but you can also specifically include/exclude files
       include: 'node_modules/**',  // Default: undefined
       exclude: [ 'node_modules/foo/**', 'node_modules/bar/**' ],  // Default: undefined
+      // optionally mutate parsed yaml with a transform function.
+      // The transform function may either:
+      // - return an updated version of the yaml content
+      // - return `undefined`, and mutate the yaml content directly
+      transform(data) {
+        if (Array.isArray(data))
+          return data.filter((element) => !element.private);
+      }
     })
   ]
 });

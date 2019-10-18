@@ -14,7 +14,13 @@ export default function yaml(options = {}) {
 			if (!ext.test(id)) return null;
 			if (!filter(id)) return null;
 
-			const data = YAML.load(yaml);
+			let data = YAML.load(yaml);
+
+			if (typeof options.transform === 'function') {
+				const result = options.transform(data);
+				if (result !== undefined) data = result;
+			}
+
 			const keys = Object.keys(data).filter(
 				key => key === makeLegalIdentifier(key)
 			);
