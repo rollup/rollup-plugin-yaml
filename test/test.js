@@ -8,12 +8,12 @@ require('source-map-support').install();
 
 process.chdir(__dirname);
 
-function executeBundle ( bundle ) {
+function executeBundle (bundle) {
 	return bundle.generate({
 		format: 'cjs'
-	}).then( generated => {
-		const fn = new Function ( 'module', 'exports', 'assert', 'require', generated.output[0].code );
-		const module = { exports: {} };
+	}).then(generated => {
+		const fn = new Function('module', 'exports', 'assert', 'require', generated.output[0].code);
+		const module = {exports: {}};
 
 		try {
 			fn(module, module.exports, assert, require);
@@ -36,11 +36,14 @@ describe('rollup-plugin-yaml', function () {
 		fs.readFileSync(path.join(__dirname, 'spec.json'), 'utf8')
 	);
 	for (const s of Object.keys(spec)) {
-		it('supports spec: ' + s, function () {
+		describe(`supports spec: ${s}`, () => {
 			for (const t of Object.keys(spec[s])) {
 				const test = spec[s][t];
-				const result = yamlParser.load(test.yaml);
-				assert.deepStrictEqual(result, test.result);
+
+				it(`converts "${test.yaml}"`, () => {
+					const result = yamlParser.load(test.yaml);
+					assert.deepStrictEqual(result, test.result);
+				});
 			}
 		});
 	}
@@ -76,7 +79,7 @@ describe('rollup-plugin-yaml', function () {
 		return rollup
 			.rollup({
 				input: 'samples/extensionless/main.js',
-				plugins: [npm({ extensions: ['.js', '.yaml'] }), yaml()]
+				plugins: [npm({extensions: ['.js', '.yaml']}), yaml()]
 			})
 			.then(executeBundle);
 	});
@@ -84,14 +87,14 @@ describe('rollup-plugin-yaml', function () {
 	it('applies the optional transform method to parsed YAML', function () {
 		const transform = (data) => {
 			if (Array.isArray(data))
-				return data.filter((datum) => !datum.private );
+				return data.filter((datum) => !datum.private);
 			else
 				Object.keys(data).forEach((key) => { if (data[key].private) delete data[key]; });
 		};
 		return rollup
 			.rollup({
 				input: 'samples/transform/main.js',
-				plugins: [yaml({ transform })]
+				plugins: [yaml({transform})]
 			})
 			.then(executeBundle);
 	});

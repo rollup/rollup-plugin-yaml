@@ -1,10 +1,6 @@
 {
   "nulls": [
     {
-      "yaml":   "",
-      "result": null
-    },
-    {
       "yaml":   "# comment",
       "result": null
     },
@@ -27,10 +23,6 @@
     {
       "yaml":   "nUlL",
       "result": "nUlL"
-    },
-    {
-      "yaml":   "!!null nUlL",
-      "result": null
     },
     {
       "yaml":   "!!null",
@@ -62,46 +54,6 @@
     {
       "yaml":   "tRuE",
       "result": "tRuE"
-    },
-    {
-      "yaml":   "!!bool tRuE",
-      "result": true
-    },
-    {
-      "yaml":   "on",
-      "result": true
-    },
-    {
-      "yaml":   "On",
-      "result": true
-    },
-    {
-      "yaml":   "ON",
-      "result": true
-    },
-    {
-      "yaml":   "oN",
-      "result": "oN"
-    },
-    {
-      "yaml":   "yes",
-      "result": true
-    },
-    {
-      "yaml":   "Yes",
-      "result": true
-    },
-    {
-      "yaml":   "YES",
-      "result": true
-    },
-    {
-      "yaml":   "yEs",
-      "result": "yEs"
-    },
-    {
-      "yaml":   "!!bool \"yEs\"",
-      "result": true
     }
   ],
 
@@ -121,46 +73,6 @@
     {
       "yaml":   "fAlSe",
       "result": "fAlSe"
-    },
-    {
-      "yaml":   "!!bool fAlSe",
-      "result": false
-    },
-    {
-      "yaml":   "off",
-      "result": false
-    },
-    {
-      "yaml":   "Off",
-      "result": false
-    },
-    {
-      "yaml":   "OFF",
-      "result": false
-    },
-    {
-      "yaml":   "oFf",
-      "result": "oFf"
-    },
-    {
-      "yaml":   "no",
-      "result": false
-    },
-    {
-      "yaml":   "No",
-      "result": false
-    },
-    {
-      "yaml":   "NO",
-      "result": false
-    },
-    {
-      "yaml":   "nO",
-      "result": "nO"
-    },
-    {
-      "yaml":   "!!bool \"nO\"",
-      "result": false
     }
   ],
 
@@ -180,10 +92,6 @@
     {
       "yaml":   "-42",
       "result": -42
-    },
-    {
-      "yaml":   "0o14",
-      "result": 12
     },
     {
       "yaml":   "0b1100",
@@ -332,15 +240,15 @@
   "string formatting": [
     {
       "yaml":   "# ASCII Art\n--- |\n  \\//||\\/||\n  // ||  ||__",
-      "result": "\\//||\\/||\n// ||  ||__"
+      "result": "\\//||\\/||\n// ||  ||__\n"
     },
     {
       "yaml":   "--- >\n  Mark McGwire's\n  year was crippled\n  by a knee injury.",
-      "result": "Mark McGwire's year was crippled by a knee injury."
+      "result": "Mark McGwire's year was crippled by a knee injury.\n"
     },
     {
       "yaml":   ">\n Sammy Sosa completed another\n fine season with great stats.\n\n   63 Home Runs\n   0.288 Batting Average\n\n What a year!",
-      "result": "Sammy Sosa completed another fine season with great stats.\n\n  63 Home Runs\n  0.288 Batting Average\n\nWhat a year!"
+      "result": "Sammy Sosa completed another fine season with great stats.\n\n  63 Home Runs\n  0.288 Batting Average\n\nWhat a year!\n"
     }
   ],
 
@@ -431,14 +339,6 @@
       "result": ["hello", "world"]
     },
     {
-      "yaml":   "a: &str hello\n*str: world",
-      "result": {"a": "hello", "hello": "world"}
-    },
-    {
-      "yaml":   "&str hello: *str",
-      "result": {"hello": "hello"}
-    },
-    {
       "yaml":   "[ &str hello, *str ]",
       "result": ["hello", "hello"]
     },
@@ -452,10 +352,6 @@
     {
       "yaml":   "'<<': { hello: world }",
       "result": {"<<": {"hello": "world"}}
-    },
-    {
-      "yaml":   "!!merge '<<': { hello: world }",
-      "result": {"hello": "world"}
     },
     {
       "yaml":   "<<: { hello: world }",
@@ -502,7 +398,7 @@
     },
     {
       "yaml":   "name: Mark McGwire\naccomplishment: >\n  Mark set a major league\n  home run record in 1998.\nstats: |\n  65 Home Runs\n  0.278 Batting Average",
-      "result": {"name": "Mark McGwire", "accomplishment": "Mark set a major league home run record in 1998.\n", "stats": "65 Home Runs\n0.278 Batting Average"}
+      "result": {"name": "Mark McGwire", "accomplishment": "Mark set a major league home run record in 1998.\n", "stats": "65 Home Runs\n0.278 Batting Average\n"}
     }
   ],
 
