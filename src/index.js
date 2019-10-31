@@ -14,7 +14,7 @@ export default function yaml (options = {}) {
 			if (!ext.test(id)) return null;
 			if (!filter(id)) return null;
 
-			let data = YAML.load(yaml);
+			let data = YAML.loadAll(yaml);
 
 			if (typeof options.transform === 'function') {
 				const result = options.transform(data);
