@@ -1,3 +1,7 @@
+# Moving...
+
+We're in the process of moving this plugin to a new monorepo. Please stand by...
+
 # rollup-plugin-yaml
 
 Convert .yaml and .yml files to ES6 modules:
